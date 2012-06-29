@@ -30,10 +30,9 @@ public class Logic {
 			audioFile.commit();
 			System.out.println(sourceFile.getParent() + "\\" + name + "."
 					+ extension);
-			sourceFile.renameTo(new File(sourceFile.getParent() + "\\" + name
-					+ "." + extension));
-			sourceFile = new File(sourceFile.getParent() + "\\" + name + "."
-					+ extension);
+			File destination = new File(sourceFile.getParent(), name + "." + extension);
+			sourceFile.renameTo(destination);
+			sourceFile = destination;
 			setAudioFile(AudioFileIO.read(sourceFile));
 			setTag(audioFile.getTag());
 		} catch (CannotWriteException e) {
