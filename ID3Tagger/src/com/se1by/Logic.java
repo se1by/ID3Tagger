@@ -17,7 +17,6 @@ public class Logic {
 			setSourceFile(f);
 			setAudioFile(AudioFileIO.read(f));
 			setTag(audioFile.getTag());
-			System.out.println("Track No. " + tag.getTrack().toArray()[0]);
 		} catch (CannotReadException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,8 +64,7 @@ public class Logic {
 	}
 
 	public String getGenre() {
-		return tag.getGenre().toString().replaceAll("\\[GENRE : ", "")
-				.replaceAll("\\]", "");
+		return tag.getFirstGenre();
 	}
 
 	public void setGenre(String genre) {
@@ -82,7 +80,8 @@ public class Logic {
 	}
 
 	public String getTrack() {
-		return tag.getTrack().toString().replaceFirst("\\D*(\\d*).*", "$1");
+		return tag.getFirstTrack();
+		//return tag.getTrack().toString().replaceFirst("\\D*(\\d*).*", "$1");
 	}
 
 	public void setTrack(String track) {
@@ -90,7 +89,8 @@ public class Logic {
 	}
 
 	public String getYear() {
-		return tag.getYear().toString().replaceFirst("\\D*(\\d*).*", "$1");
+		return tag.getFirstYear();
+		//return tag.getYear().toString().replaceFirst("\\D*(\\d*).*", "$1");
 	}
 
 	public void setYear(String year) {
